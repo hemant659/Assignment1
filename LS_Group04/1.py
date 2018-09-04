@@ -55,4 +55,4 @@ z=MatMult.matrixMult(x,cov1_inv)
 for i in range (len(z)):
 	for j in range (len(z[0])):
 		print(z[i][j])
-#print(fh.readlines())
+#still lot of work to do

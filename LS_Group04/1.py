@@ -1,7 +1,7 @@
 import CoVariance
 import MatMult
 import MatInverse
-fh=open("ClassOne.txt","r") 
+fh=open("Class1.txt","r") 
 m1=[]
 m2=[]
 sum1=sum2=0.00

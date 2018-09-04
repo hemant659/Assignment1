@@ -1,6 +1,6 @@
-def transposeMatrix(m):
+ref transposeMatrix(m):
     return map(list,zip(*m))
-def matrixMult(m1,m2):
+ref matrixMult(m1,m2):
     n=len(m1)
     m=len(m2[0])
     p=len(m2)

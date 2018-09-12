@@ -125,6 +125,7 @@ for line in fo1:
 	sec=np.log(det)
 	sec=(-0.500)*sec;
 	g1=g1+sec;
+	g1=g1+np.log(0.3534)
 	max1=g1
 	max_idx=1
 	#prob1.append(g1)
@@ -143,6 +144,7 @@ for line in fo1:
 	sec=np.log(det)
 	sec=(-0.500)*sec;
 	g2=g2+sec;
+	g2=g2+(np.log(0.307));
 	max1=max(max1,g2)
 	if max1==g2 :
 		max_idx=2
@@ -162,6 +164,7 @@ for line in fo1:
 	sec=np.log(det)
 	sec=(-0.500)*sec;
 	g3=g3+sec;
+	g3=g3+(np.log(0.3392));
 	max1=max(max1,g3)
 	if max1==g3 :
 		max_idx=3
@@ -169,8 +172,12 @@ for line in fo1:
 	cl.append(max_idx)
 	#prob3.append(g)
 	#max1=g1;
-for i in range (0,125):
-	print(cl[i])
+count=0
+for i in range (0,597):
+	if cl[i]==3 :
+		count+=1
+	#print(cl[i])
+print(count)
 """a, b = map(float, input().split())
 x=[[0] * 2 for i in range(1)]
 x[0][0]=a

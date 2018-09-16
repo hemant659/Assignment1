@@ -1,4 +1,6 @@
+import sys
 import numpy as np
+import classifier
 import CoVariance
 import MatMult
 import MatInverse
@@ -96,10 +98,6 @@ for i in range (0,2):
 		print(cov3_inv[i][j])
 print("\n")
 
-v1=[]
-v2=[]
-w1=[]
-w2=[]
 u1 = [[0] * 2 for i in range(1)]
 u2 = [[0] * 1 for i in range(2)]
 x = [[0] * 2 for i in range(1)]
@@ -108,86 +106,8 @@ prob1=[]
 prob2=[]
 prob3=[]
 cl=[]
-fo1=open("Class3Test.txt","r")
-for line in fo1: 
-	words=line.split()
-	u1[0][0]=(float(words[0])-mean_vector1[0])
-	u1[0][1]=(float(words[1])-mean_vector2[0])
-	u2[0][0]=u1[0][0]
-	u2[1][0]=u1[0][1]
-	x=MatMult.matrixMult(u1,cov1_inv)
-	y=MatMult.matrixMult(x,u2)
-	#print(y[0][0])
-	g1=(-0.5000)*y[0][0]
-	det=MatInverse.getMatrixDeternminant(cov1)
-	if det<0:
-		det=(-1.000)*det;
-	sec=np.log(det)
-	sec=(-0.500)*sec;
-	g1=g1+sec;
-	g1=g1+np.log(0.3534)
-	max1=g1
-	max_idx=1
-	#prob1.append(g1)
-
-	u1[0][0]=(float(words[0])-mean_vector1[1])
-	u1[0][1]=(float(words[1])-mean_vector2[1])
-	u2[0][0]=u1[0][0]
-	u2[1][0]=u1[0][1]
-	x=MatMult.matrixMult(u1,cov2_inv)
-	y=MatMult.matrixMult(x,u2)
-	#print(y[0][0])
-	g2=(-0.5000)*y[0][0]
-	det=MatInverse.getMatrixDeternminant(cov2)
-	if det<0 :
-		det=(-1.000)*det;
-	sec=np.log(det)
-	sec=(-0.500)*sec;
-	g2=g2+sec;
-	g2=g2+(np.log(0.307));
-	max1=max(max1,g2)
-	if max1==g2 :
-		max_idx=2
-	#prob2.append(g)
-
-	u1[0][0]=(float(words[0])-mean_vector1[2])
-	u1[0][1]=(float(words[1])-mean_vector2[2])
-	u2[0][0]=u1[0][0]
-	u2[1][0]=u1[0][1]
-	x=MatMult.matrixMult(u1,cov3_inv)
-	y=MatMult.matrixMult(x,u2)
-	#print(y[0][0])
-	g3=(-0.5000)*y[0][0]
-	det=MatInverse.getMatrixDeternminant(cov3)
-	if det<0 :
-		det=(-1.000)*det;
-	sec=np.log(det)
-	sec=(-0.500)*sec;
-	g3=g3+sec;
-	g3=g3+(np.log(0.3392));
-	max1=max(max1,g3)
-	if max1==g3 :
-		max_idx=3
-	print(g1,g2,g3)
-	cl.append(max_idx)
-	#prob3.append(g)
-	#max1=g1;
-count=0
-for i in range (0,597):
-	if cl[i]==3 :
-		count+=1
-	#print(cl[i])
-print(count)
-"""a, b = map(float, input().split())
-x=[[0] * 2 for i in range(1)]
-x[0][0]=a
-x[0][1]=b
-print(x[0][0],x[0][1])
-#y=MatMult.transposeMatrix(x)
-y = [[0] * 1 for i in range(2)]
-z = [[0] * 2 for i in range(1)]
-z=MatMult.matrixMult(x,cov1_inv)
-for i in range (len(z)):
-	for j in range (len(z[0])):
-		print(z[i][j])"""
-#still lot of work to do
+z=0
+#print(len(sys.argv))
+#print(str(sys.argv[1]))
+count = classifier.assignClass(sys.argv[1],mean_vector1,mean_vector2,cov1,cov2,cov3)
+print(count,z)
